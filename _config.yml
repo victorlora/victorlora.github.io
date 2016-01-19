@@ -1,0 +1,28 @@
+# top level stuff you probably don't need to touch
+highlighter: pygments
+markdown: rdiscount
+rdiscount:
+  extensions: [smart]
+permalink: /:title.html
+paginate: 5
+gems: [jekyll-paginate]
+port: 3000
+safe: true
+
+# personal information
+url: http://victorlora.github.io/
+title: Victor A. Lora
+author: Victor A. Lora
+description: Personal blog and resume
+avatar: profile.png
+email: victor@victorlora.net
+github: victorlora
+twitter:
+linkedin: vlora95
+
+
+google_analytics: UA-72222962-1
+
+
+# needed for travis-ci build
+exclude: [vendor]

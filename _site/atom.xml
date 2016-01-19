@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  
+    <title type="text" xml:lang="en">Victor A. Lora</title>
+    <link type="application/atom+xml" rel="self" href="http://victorlora.github.io//atom.xml"/>
+  
+  <link href="http://victorlora.github.io//"/>
+  <id>http://victorlora.github.io//</id>
+  <updated>2016-01-19T15:52:44Z</updated>
+  <author>
+    <name>Victor A. Lora</name>
+    <email>victor@victorlora.net</email>
+  </author>
+  <rights type="text">Copyright © 2016 Victor A. Lora. All rights reserved.</rights>
+  
+
+</feed>
