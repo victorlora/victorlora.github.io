@@ -139,10 +139,15 @@ h3 {
 }
 .social {
   padding-top: 12px;
-  word-spacing: 25px;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .social h4 > a {
   color: #F1F1F1;
+}
+.fa {
+  margin: 10px;
 }
 .avatar {
   padding-top: 5%;
