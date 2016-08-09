@@ -11,10 +11,6 @@ layout: layout
 	<div class="blog-title">
 		<h4>
 		{{ page.date | date: "%B %e, %Y" }}
-			
-			{% for tag in page.tags %}
-			 <span class="label label-success">{{ tag }}</span>
-			{% endfor %}
 		</h4>
 	</div>
 	<div class="panel panel-default">
@@ -42,5 +38,9 @@ layout: layout
 			</div>
 		</div>
 	</div>
+	{% for tag in page.tags %}
+			 <span class="label label-success">{{ tag }}</span>
+	{% endfor %}
+	
 	{% include disqus.html %}
 </div>
