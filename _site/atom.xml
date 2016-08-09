@@ -6,7 +6,7 @@
   
   <link href="http://victorlora.github.io//"/>
   <id>http://victorlora.github.io//</id>
-  <updated>2016-08-09T00:50:47Z</updated>
+  <updated>2016-08-09T01:12:24Z</updated>
   <author>
     <name>Victor A. Lora</name>
     <email>victor@victorlora.net</email>
@@ -27,209 +27,209 @@
 
 <p>The resulting custom date item was as follows:</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno">  1</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MonthDayPickerItem</span> <span class="kd">extends</span> <span class="n">CanvasItem</span>
-<span class="lineno">  2</span> <span class="o">{</span>
-<span class="lineno">  3</span> 	<span class="kd">private</span> <span class="n">DynamicForm</span> <span class="n">form</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">DynamicForm</span><span class="o">();</span>
-<span class="lineno">  4</span> 	<span class="kd">private</span> <span class="n">SelectItem</span> <span class="n">monthPicker</span><span class="o">;</span>
-<span class="lineno">  5</span> 	<span class="kd">private</span> <span class="n">SelectItem</span> <span class="n">dayPicker</span><span class="o">;</span>
-<span class="lineno">  6</span> 	<span class="kd">private</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">daysInMonthArray</span> 
-<span class="lineno">  7</span>             <span class="o">=</span> <span class="o">{</span><span class="mi">31</span><span class="o">,</span> <span class="mi">28</span><span class="o">,</span> <span class="mi">31</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">31</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">31</span><span class="o">,</span> <span class="mi">31</span><span class="o">,</span> <span class="mi">30</span> <span class="o">,</span> <span class="mi">31</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">31</span><span class="o">};</span>
-<span class="lineno">  8</span> 
-<span class="lineno">  9</span> 	<span class="kd">public</span> <span class="nf">MonthDayPickerItem</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">title</span><span class="o">)</span>
-<span class="lineno"> 10</span> 	<span class="o">{</span>
-<span class="lineno"> 11</span>         <span class="n">buildForm</span><span class="o">();</span>
-<span class="lineno"> 12</span> 
-<span class="lineno"> 13</span>         <span class="n">setTitle</span><span class="o">(</span><span class="n">title</span><span class="o">);</span>
-<span class="lineno"> 14</span>         <span class="n">setName</span><span class="o">(</span><span class="n">name</span><span class="o">);</span> 
-<span class="lineno"> 15</span>         <span class="n">setCanvas</span><span class="o">(</span><span class="n">form</span><span class="o">);</span>
-<span class="lineno"> 16</span> 	<span class="o">}</span>
-<span class="lineno"> 17</span> 
-<span class="lineno"> 18</span> 	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">buildForm</span><span class="o">()</span>
-<span class="lineno"> 19</span> 	<span class="o">{</span>
-<span class="lineno"> 20</span>         <span class="n">monthPicker</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SelectItem</span><span class="o">(</span><span class="s">&quot;month&quot;</span><span class="o">);</span>
-<span class="lineno"> 21</span>         <span class="n">monthPicker</span><span class="o">.</span><span class="na">setShowTitle</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
-<span class="lineno"> 22</span>         <span class="n">monthPicker</span><span class="o">.</span><span class="na">setWidth</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
-<span class="lineno"> 23</span>         <span class="n">monthPicker</span><span class="o">.</span><span class="na">setAllowEmptyValue</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-<span class="lineno"> 24</span>         <span class="n">monthPicker</span><span class="o">.</span><span class="na">setChangedHandler</span><span class="o">(</span><span class="n">monthChangedHandler</span><span class="o">());</span>
-<span class="lineno"> 25</span>         <span class="n">monthPicker</span><span class="o">.</span><span class="na">setValueMap</span><span class="o">(</span><span class="n">buildMonthPickerValueMap</span><span class="o">());</span>
-<span class="lineno"> 26</span> 
-<span class="lineno"> 27</span>         <span class="n">dayPicker</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SelectItem</span><span class="o">(</span><span class="s">&quot;day&quot;</span><span class="o">);</span>
-<span class="lineno"> 28</span>         <span class="n">dayPicker</span><span class="o">.</span><span class="na">setShowTitle</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
-<span class="lineno"> 29</span>         <span class="n">dayPicker</span><span class="o">.</span><span class="na">setWidth</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
-<span class="lineno"> 30</span>         <span class="n">dayPicker</span><span class="o">.</span><span class="na">setDisabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-<span class="lineno"> 31</span> 
-<span class="lineno"> 32</span>         <span class="n">form</span><span class="o">.</span><span class="na">setNumCols</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
-<span class="lineno"> 33</span>         <span class="n">form</span><span class="o">.</span><span class="na">setWidth</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
-<span class="lineno"> 34</span>         <span class="n">form</span><span class="o">.</span><span class="na">setItems</span><span class="o">(</span><span class="n">monthPicker</span><span class="o">,</span> <span class="n">dayPicker</span><span class="o">);</span>
-<span class="lineno"> 35</span> 	<span class="o">}</span>
-<span class="lineno"> 36</span> 
-<span class="lineno"> 37</span>     <span class="kd">private</span> <span class="n">ChangedHandler</span> <span class="nf">monthChangedHandler</span><span class="o">()</span>
-<span class="lineno"> 38</span>     <span class="o">{</span>
-<span class="lineno"> 39</span>         <span class="n">ChangedHandler</span> <span class="n">changedHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ChangedHandler</span><span class="o">()</span>
-<span class="lineno"> 40</span>         <span class="o">{</span>
-<span class="lineno"> 41</span>             <span class="nd">@Override</span>
-<span class="lineno"> 42</span>             <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onChanged</span><span class="o">(</span><span class="n">ChangedEvent</span> <span class="n">event</span><span class="o">)</span>
-<span class="lineno"> 43</span>             <span class="o">{</span>
-<span class="lineno"> 44</span>                 <span class="k">if</span> <span class="o">(</span><span class="n">monthPicker</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
-<span class="lineno"> 45</span>                 <span class="o">{</span>
-<span class="lineno"> 46</span>                     <span class="k">if</span> <span class="o">(</span><span class="n">dayPicker</span><span class="o">.</span><span class="na">getDisabled</span><span class="o">())</span>
-<span class="lineno"> 47</span>                         <span class="n">dayPicker</span><span class="o">.</span><span class="na">enable</span><span class="o">();</span>
-<span class="lineno"> 48</span> 
-<span class="lineno"> 49</span>                     <span class="n">dayPicker</span><span class="o">.</span><span class="na">clearValue</span><span class="o">();</span>
-<span class="lineno"> 50</span>                     <span class="n">dayPicker</span><span class="o">.</span><span class="na">setValueMap</span><span class="o">(</span><span class="n">buildDayPickerValueMap</span><span class="o">());</span>
-<span class="lineno"> 51</span>                     <span class="n">dayPicker</span><span class="o">.</span><span class="na">setDefaultToFirstOption</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-<span class="lineno"> 52</span>                 <span class="o">}</span>
-<span class="lineno"> 53</span>                 <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">monthPicker</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span> 
-<span class="lineno"> 54</span>                         <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">dayPicker</span><span class="o">.</span><span class="na">getDisabled</span><span class="o">())</span>
-<span class="lineno"> 55</span>                 <span class="o">{</span>
-<span class="lineno"> 56</span>                     <span class="n">dayPicker</span><span class="o">.</span><span class="na">clearValue</span><span class="o">();</span>
-<span class="lineno"> 57</span>                     <span class="n">dayPicker</span><span class="o">.</span><span class="na">disable</span><span class="o">();</span>
-<span class="lineno"> 58</span>                 <span class="o">}</span>
-<span class="lineno"> 59</span>             <span class="o">}</span>
-<span class="lineno"> 60</span>         <span class="o">};</span>
-<span class="lineno"> 61</span> 
-<span class="lineno"> 62</span>         <span class="k">return</span> <span class="n">changedHandler</span><span class="o">;</span>
-<span class="lineno"> 63</span>     <span class="o">}</span>
-<span class="lineno"> 64</span> 
-<span class="lineno"> 65</span>     <span class="kd">private</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">buildMonthPickerValueMap</span><span class="o">()</span>
-<span class="lineno"> 66</span>     <span class="o">{</span>
-<span class="lineno"> 67</span>         <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">valueMap</span> 
-<span class="lineno"> 68</span>                 <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
-<span class="lineno"> 69</span>         <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">&quot;Jan&quot;</span><span class="o">);</span>
-<span class="lineno"> 70</span>         <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">&quot;Feb&quot;</span><span class="o">);</span>
-<span class="lineno"> 71</span>         <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="s">&quot;Mar&quot;</span><span class="o">);</span>
-<span class="lineno"> 72</span>         <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="s">&quot;Apr&quot;</span><span class="o">);</span>
-<span class="lineno"> 73</span>         <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="s">&quot;May&quot;</span><span class="o">);</span>
-<span class="lineno"> 74</span>         <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="s">&quot;Jun&quot;</span><span class="o">);</span>
-<span class="lineno"> 75</span>         <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">6</span><span class="o">,</span> <span class="s">&quot;Jul&quot;</span><span class="o">);</span>
-<span class="lineno"> 76</span>         <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="s">&quot;Aug&quot;</span><span class="o">);</span>
-<span class="lineno"> 77</span>         <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">8</span><span class="o">,</span> <span class="s">&quot;Sep&quot;</span><span class="o">);</span>
-<span class="lineno"> 78</span>         <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">9</span><span class="o">,</span> <span class="s">&quot;Oct&quot;</span><span class="o">);</span>
-<span class="lineno"> 79</span>         <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="s">&quot;Nov&quot;</span><span class="o">)</span>
-<span class="lineno"> 80</span>         <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">11</span><span class="o">,</span> <span class="s">&quot;Dec&quot;</span><span class="o">);</span>
-<span class="lineno"> 81</span> 
-<span class="lineno"> 82</span>         <span class="k">return</span> <span class="n">valueMap</span><span class="o">;</span>
-<span class="lineno"> 83</span>     <span class="o">}</span>
-<span class="lineno"> 84</span> 
-<span class="lineno"> 85</span>     <span class="kd">private</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">buildDayPickerValueMap</span><span class="o">()</span>
-<span class="lineno"> 86</span>     <span class="o">{</span>
-<span class="lineno"> 87</span>         <span class="kt">int</span> <span class="n">month</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">monthPicker</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
-<span class="lineno"> 88</span> 
-<span class="lineno"> 89</span>         <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">valueMap</span> 
-<span class="lineno"> 90</span>                 <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
-<span class="lineno"> 91</span>         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">daysInMonthArray</span><span class="o">[</span><span class="n">month</span><span class="o">];</span> <span class="n">i</span><span class="o">++)</span>
-<span class="lineno"> 92</span>         <span class="o">{</span>
-<span class="lineno"> 93</span>             <span class="n">dayMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
-<span class="lineno"> 94</span>         <span class="o">}</span>
-<span class="lineno"> 95</span> 
-<span class="lineno"> 96</span>         <span class="k">return</span> <span class="n">valueMap</span><span class="o">;</span>
-<span class="lineno"> 97</span>     <span class="o">}</span>
-<span class="lineno"> 98</span> 
-<span class="lineno"> 99</span>     <span class="nd">@Override</span>
-<span class="lineno">100</span>     <span class="kd">public</span> <span class="n">Object</span> <span class="nf">getValue</span><span class="o">()</span>
-<span class="lineno">101</span>     <span class="o">{</span>
-<span class="lineno">102</span>         <span class="k">if</span> <span class="o">(</span><span class="n">monthPicker</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span> 
-<span class="lineno">103</span>                 <span class="o">&amp;&amp;</span> <span class="n">dayPicker</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
-<span class="lineno">104</span>         <span class="o">{</span>
-<span class="lineno">105</span>         	<span class="kt">int</span> <span class="n">dayOfYear</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-<span class="lineno">106</span> 
-<span class="lineno">107</span>             <span class="kt">int</span> <span class="n">month</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">monthPicker</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
-<span class="lineno">108</span>             <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">month</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-<span class="lineno">109</span>             <span class="o">{</span>
-<span class="lineno">110</span>                 <span class="n">dayOfYear</span> <span class="o">+=</span> <span class="n">daysInMonthArray</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-<span class="lineno">111</span>             <span class="o">}</span>
-<span class="lineno">112</span> 
-<span class="lineno">113</span>             <span class="n">day</span> <span class="o">+=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">dayPicker</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
-<span class="lineno">114</span> 
-<span class="lineno">115</span>             <span class="k">return</span> <span class="n">dayOfYear</span><span class="o">;</span>
-<span class="lineno">116</span>         <span class="o">}</span>
-<span class="lineno">117</span> 
-<span class="lineno">118</span>         <span class="k">return</span> <span class="kc">null</span>
-<span class="lineno">119</span>     <span class="o">}</span>
-<span class="lineno">120</span> 
-<span class="lineno">121</span>     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValues</span><span class="o">(</span><span class="n">Record</span> <span class="n">monthDay</span><span class="o">)</span>
-<span class="lineno">122</span>     <span class="o">{</span>
-<span class="lineno">123</span>         <span class="k">if</span> <span class="o">(</span><span class="n">monthDay</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
-<span class="lineno">124</span>         <span class="o">{</span>
-<span class="lineno">125</span>             <span class="n">Integer</span> <span class="n">month</span> <span class="o">=</span> <span class="n">monthDay</span><span class="o">.</span><span class="na">getAttributeAsInt</span><span class="o">(</span><span class="s">&quot;month&quot;</span><span class="o">);</span>
-<span class="lineno">126</span>             <span class="n">Integer</span> <span class="n">day</span> <span class="o">=</span> <span class="n">monthDay</span><span class="o">.</span><span class="na">getAttributeAsInt</span><span class="o">(</span><span class="s">&quot;day&quot;</span><span class="o">);</span>
-<span class="lineno">127</span> 
-<span class="lineno">128</span>             <span class="k">if</span> <span class="o">(</span><span class="n">month</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">day</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
-<span class="lineno">129</span>             <span class="o">{</span>
-<span class="lineno">130</span>                 <span class="n">monthPicker</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="n">month</span><span class="o">);</span>
-<span class="lineno">131</span> 
-<span class="lineno">132</span>                 <span class="n">dayPicker</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="n">day</span><span class="o">);</span>
-<span class="lineno">133</span>                 <span class="n">dayPicker</span><span class="o">.</span><span class="na">enable</span><span class="o">();</span>
-<span class="lineno">134</span>                 <span class="n">dayPicker</span><span class="o">.</span><span class="na">setValueMap</span><span class="o">(</span><span class="n">buildDayPickerValueMap</span><span class="o">());</span>
-<span class="lineno">135</span>             <span class="o">}</span>
-<span class="lineno">136</span>         <span class="o">}</span>
-<span class="lineno">137</span>     <span class="o">}</span>
-<span class="lineno">138</span> <span class="o">}</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MonthDayPickerItem</span> <span class="kd">extends</span> <span class="n">CanvasItem</span>
+<span class="o">{</span>
+	<span class="kd">private</span> <span class="n">DynamicForm</span> <span class="n">form</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">DynamicForm</span><span class="o">();</span>
+	<span class="kd">private</span> <span class="n">SelectItem</span> <span class="n">monthPicker</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="n">SelectItem</span> <span class="n">dayPicker</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">daysInMonthArray</span> 
+            <span class="o">=</span> <span class="o">{</span><span class="mi">31</span><span class="o">,</span> <span class="mi">28</span><span class="o">,</span> <span class="mi">31</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">31</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">31</span><span class="o">,</span> <span class="mi">31</span><span class="o">,</span> <span class="mi">30</span> <span class="o">,</span> <span class="mi">31</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">31</span><span class="o">};</span>
+
+	<span class="kd">public</span> <span class="nf">MonthDayPickerItem</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">title</span><span class="o">)</span>
+	<span class="o">{</span>
+        <span class="n">buildForm</span><span class="o">();</span>
+
+        <span class="n">setTitle</span><span class="o">(</span><span class="n">title</span><span class="o">);</span>
+        <span class="n">setName</span><span class="o">(</span><span class="n">name</span><span class="o">);</span> 
+        <span class="n">setCanvas</span><span class="o">(</span><span class="n">form</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">buildForm</span><span class="o">()</span>
+	<span class="o">{</span>
+        <span class="n">monthPicker</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SelectItem</span><span class="o">(</span><span class="s">&quot;month&quot;</span><span class="o">);</span>
+        <span class="n">monthPicker</span><span class="o">.</span><span class="na">setShowTitle</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">monthPicker</span><span class="o">.</span><span class="na">setWidth</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
+        <span class="n">monthPicker</span><span class="o">.</span><span class="na">setAllowEmptyValue</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">monthPicker</span><span class="o">.</span><span class="na">setChangedHandler</span><span class="o">(</span><span class="n">monthChangedHandler</span><span class="o">());</span>
+        <span class="n">monthPicker</span><span class="o">.</span><span class="na">setValueMap</span><span class="o">(</span><span class="n">buildMonthPickerValueMap</span><span class="o">());</span>
+
+        <span class="n">dayPicker</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">SelectItem</span><span class="o">(</span><span class="s">&quot;day&quot;</span><span class="o">);</span>
+        <span class="n">dayPicker</span><span class="o">.</span><span class="na">setShowTitle</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">dayPicker</span><span class="o">.</span><span class="na">setWidth</span><span class="o">(</span><span class="mi">50</span><span class="o">);</span>
+        <span class="n">dayPicker</span><span class="o">.</span><span class="na">setDisabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+        <span class="n">form</span><span class="o">.</span><span class="na">setNumCols</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+        <span class="n">form</span><span class="o">.</span><span class="na">setWidth</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+        <span class="n">form</span><span class="o">.</span><span class="na">setItems</span><span class="o">(</span><span class="n">monthPicker</span><span class="o">,</span> <span class="n">dayPicker</span><span class="o">);</span>
+	<span class="o">}</span>
+
+    <span class="kd">private</span> <span class="n">ChangedHandler</span> <span class="nf">monthChangedHandler</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">ChangedHandler</span> <span class="n">changedHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">ChangedHandler</span><span class="o">()</span>
+        <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onChanged</span><span class="o">(</span><span class="n">ChangedEvent</span> <span class="n">event</span><span class="o">)</span>
+            <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">monthPicker</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+                <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">dayPicker</span><span class="o">.</span><span class="na">getDisabled</span><span class="o">())</span>
+                        <span class="n">dayPicker</span><span class="o">.</span><span class="na">enable</span><span class="o">();</span>
+
+                    <span class="n">dayPicker</span><span class="o">.</span><span class="na">clearValue</span><span class="o">();</span>
+                    <span class="n">dayPicker</span><span class="o">.</span><span class="na">setValueMap</span><span class="o">(</span><span class="n">buildDayPickerValueMap</span><span class="o">());</span>
+                    <span class="n">dayPicker</span><span class="o">.</span><span class="na">setDefaultToFirstOption</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+                <span class="o">}</span>
+                <span class="k">else</span> <span class="nf">if</span> <span class="o">(</span><span class="n">monthPicker</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span> 
+                        <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">dayPicker</span><span class="o">.</span><span class="na">getDisabled</span><span class="o">())</span>
+                <span class="o">{</span>
+                    <span class="n">dayPicker</span><span class="o">.</span><span class="na">clearValue</span><span class="o">();</span>
+                    <span class="n">dayPicker</span><span class="o">.</span><span class="na">disable</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">};</span>
+
+        <span class="k">return</span> <span class="n">changedHandler</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">buildMonthPickerValueMap</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">valueMap</span> 
+                <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
+        <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">&quot;Jan&quot;</span><span class="o">);</span>
+        <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">&quot;Feb&quot;</span><span class="o">);</span>
+        <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="s">&quot;Mar&quot;</span><span class="o">);</span>
+        <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="s">&quot;Apr&quot;</span><span class="o">);</span>
+        <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="s">&quot;May&quot;</span><span class="o">);</span>
+        <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="s">&quot;Jun&quot;</span><span class="o">);</span>
+        <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">6</span><span class="o">,</span> <span class="s">&quot;Jul&quot;</span><span class="o">);</span>
+        <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="s">&quot;Aug&quot;</span><span class="o">);</span>
+        <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">8</span><span class="o">,</span> <span class="s">&quot;Sep&quot;</span><span class="o">);</span>
+        <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">9</span><span class="o">,</span> <span class="s">&quot;Oct&quot;</span><span class="o">);</span>
+        <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="s">&quot;Nov&quot;</span><span class="o">)</span>
+        <span class="n">valueMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">11</span><span class="o">,</span> <span class="s">&quot;Dec&quot;</span><span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">valueMap</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">buildDayPickerValueMap</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">month</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">monthPicker</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
+
+        <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">valueMap</span> 
+                <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">daysInMonthArray</span><span class="o">[</span><span class="n">month</span><span class="o">];</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="o">{</span>
+            <span class="n">dayMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">valueMap</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">getValue</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">monthPicker</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span> 
+                <span class="o">&amp;&amp;</span> <span class="n">dayPicker</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+        <span class="o">{</span>
+        	<span class="kt">int</span> <span class="n">dayOfYear</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+            <span class="kt">int</span> <span class="n">month</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">monthPicker</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">month</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+            <span class="o">{</span>
+                <span class="n">dayOfYear</span> <span class="o">+=</span> <span class="n">daysInMonthArray</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+            <span class="o">}</span>
+
+            <span class="n">day</span> <span class="o">+=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">dayPicker</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
+
+            <span class="k">return</span> <span class="n">dayOfYear</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="kc">null</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValues</span><span class="o">(</span><span class="n">Record</span> <span class="n">monthDay</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">monthDay</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+        <span class="o">{</span>
+            <span class="n">Integer</span> <span class="n">month</span> <span class="o">=</span> <span class="n">monthDay</span><span class="o">.</span><span class="na">getAttributeAsInt</span><span class="o">(</span><span class="s">&quot;month&quot;</span><span class="o">);</span>
+            <span class="n">Integer</span> <span class="n">day</span> <span class="o">=</span> <span class="n">monthDay</span><span class="o">.</span><span class="na">getAttributeAsInt</span><span class="o">(</span><span class="s">&quot;day&quot;</span><span class="o">);</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">month</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">day</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+            <span class="o">{</span>
+                <span class="n">monthPicker</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="n">month</span><span class="o">);</span>
+
+                <span class="n">dayPicker</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="n">day</span><span class="o">);</span>
+                <span class="n">dayPicker</span><span class="o">.</span><span class="na">enable</span><span class="o">();</span>
+                <span class="n">dayPicker</span><span class="o">.</span><span class="na">setValueMap</span><span class="o">(</span><span class="n">buildDayPickerValueMap</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
 
 <p>   As you may have noted, this class converts the users selection of month and day into a day of year in the getValue() method. Now the last piece of the puzzle is converting that day of year back into a month and day so that the MonthDayPicker reflects the database value correctly.</p>
 
 <p>   Below is the class that takes a day of the year and converts back to a month and day. Note that, in order to preserve the users original month day choice, the converter offsets the extra day in leap years by adding one to any day of year greater than or equal to February 29th (i.e. On non-leap years, the user’s choice of March 1st is equal to the 60th day of the year; however, on a leap year the 60th day of the year is February 29th. The converter takes this into account by adding 1 to any day of year &gt;= 60. So, on a leap year a user’s choice of March 1st would be stored in the database as day of year 60, but would be returned as day of year 61).</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno"> 1</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">DayOfYearToMonthDayConverter</span>
-<span class="lineno"> 2</span> <span class="o">{</span>
-<span class="lineno"> 3</span>     <span class="kd">public</span> <span class="kd">static</span> <span class="n">MonthDay</span> <span class="nf">convert</span><span class="o">(</span><span class="n">Integer</span> <span class="n">dayOfYear</span><span class="o">)</span>
-<span class="lineno"> 4</span>     <span class="o">{</span>
-<span class="lineno"> 5</span>         <span class="n">MonthDay</span> <span class="n">monthDay</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">MonthDay</span><span class="o">();</span>
-<span class="lineno"> 6</span>         <span class="k">if</span> <span class="o">(</span><span class="n">dayOfYear</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
-<span class="lineno"> 7</span>         <span class="o">{</span>
-<span class="lineno"> 8</span>             <span class="n">Calendar</span> <span class="n">calendar</span> <span class="o">=</span> <span class="n">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
-<span class="lineno"> 9</span> 
-<span class="lineno">10</span>             <span class="kt">int</span> <span class="n">year</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">YEAR</span><span class="o">);</span>
-<span class="lineno">11</span>             <span class="kt">boolean</span> <span class="n">isLeapYear</span> <span class="o">=</span> <span class="o">((</span><span class="n">year</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">year</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> 
-<span class="lineno">12</span>                     <span class="o">||</span> <span class="o">(</span><span class="n">year</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">==</span> <span class="mi">0</span><span class="o">));</span>
-<span class="lineno">13</span> 
-<span class="lineno">14</span>             <span class="c1">// if current year is a leap year and dayOfYear comes after Feb. 29th</span>
-<span class="lineno">15</span>             <span class="c1">// add 1 to dayOfYear to offset extra day</span>
-<span class="lineno">16</span>             <span class="k">if</span> <span class="o">(</span><span class="n">isLeapYear</span> <span class="o">&amp;&amp;</span> <span class="n">dayOfYear</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="o">)</span>
-<span class="lineno">17</span>             <span class="o">{</span>
-<span class="lineno">18</span>                 <span class="n">dayOfYear</span><span class="o">++;</span>
-<span class="lineno">19</span>             <span class="o">}</span>
-<span class="lineno">20</span> 
-<span class="lineno">21</span>             <span class="n">calendar</span><span class="o">.</span><span class="na">setTime</span><span class="o">(</span><span class="k">new</span> <span class="nf">Date</span><span class="o">());</span>
-<span class="lineno">22</span>             <span class="n">calendar</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">year</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
-<span class="lineno">23</span>             <span class="n">calendar</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">DAY_OF_YEAR</span><span class="o">,</span> <span class="n">dayOfYear</span><span class="o">);</span>
-<span class="lineno">24</span> 
-<span class="lineno">25</span>             <span class="kt">int</span> <span class="n">month</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">MONTH</span><span class="o">);</span>
-<span class="lineno">26</span>             <span class="kt">int</span> <span class="n">day</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">DAY_OF_MONTH</span><span class="o">);</span>
-<span class="lineno">27</span> 
-<span class="lineno">28</span>             <span class="n">monthDay</span><span class="o">.</span><span class="na">setMonth</span><span class="o">(</span><span class="n">month</span><span class="o">);</span>
-<span class="lineno">29</span>             <span class="n">monthDay</span><span class="o">.</span><span class="na">setDay</span><span class="o">(</span><span class="n">day</span><span class="o">);</span>
-<span class="lineno">30</span>         <span class="o">}</span>
-<span class="lineno">31</span> 
-<span class="lineno">32</span>         <span class="k">return</span> <span class="n">monthDay</span><span class="o">;</span>
-<span class="lineno">33</span>     <span class="o">}</span>
-<span class="lineno">34</span> <span class="o">}</span></code></pre></div>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DayOfYearToMonthDayConverter</span>
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">MonthDay</span> <span class="nf">convert</span><span class="o">(</span><span class="n">Integer</span> <span class="n">dayOfYear</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">MonthDay</span> <span class="n">monthDay</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">MonthDay</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">dayOfYear</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+        <span class="o">{</span>
+            <span class="n">Calendar</span> <span class="n">calendar</span> <span class="o">=</span> <span class="n">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="lineno"> 1</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MonthDay</span>
-<span class="lineno"> 2</span> <span class="o">{</span>
-<span class="lineno"> 3</span>     <span class="kd">private</span> <span class="n">Integer</span> <span class="n">month</span><span class="o">;</span>
-<span class="lineno"> 4</span>     <span class="kd">private</span> <span class="n">Integer</span> <span class="n">day</span><span class="o">;</span>
-<span class="lineno"> 5</span> 
-<span class="lineno"> 6</span>     <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getMonth</span><span class="o">()</span>
-<span class="lineno"> 7</span>     <span class="o">{</span>
-<span class="lineno"> 8</span>         <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">month</span><span class="o">;</span>
-<span class="lineno"> 9</span>     <span class="o">}</span>
-<span class="lineno">10</span> 
-<span class="lineno">11</span>     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setMonth</span><span class="o">(</span><span class="n">Integer</span> <span class="n">month</span><span class="o">)</span>
-<span class="lineno">12</span>     <span class="o">{</span>
-<span class="lineno">13</span>         <span class="k">this</span><span class="o">.</span><span class="na">month</span> <span class="o">=</span> <span class="n">month</span><span class="o">;</span>
-<span class="lineno">14</span>     <span class="o">}</span>
-<span class="lineno">15</span> 
-<span class="lineno">16</span>     <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getDay</span><span class="o">()</span>
-<span class="lineno">17</span>     <span class="o">{</span>
-<span class="lineno">18</span>         <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">day</span><span class="o">;</span>
-<span class="lineno">19</span>     <span class="o">}</span>
-<span class="lineno">20</span> 
-<span class="lineno">21</span>     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDay</span><span class="o">(</span><span class="n">Integer</span> <span class="n">day</span><span class="o">)</span>
-<span class="lineno">22</span>     <span class="o">{</span>
-<span class="lineno">23</span>         <span class="k">this</span><span class="o">.</span><span class="na">day</span> <span class="o">=</span> <span class="n">day</span><span class="o">;</span>
-<span class="lineno">24</span>     <span class="o">}</span>
-<span class="lineno">25</span> <span class="o">}</span></code></pre></div>
+            <span class="kt">int</span> <span class="n">year</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">YEAR</span><span class="o">);</span>
+            <span class="kt">boolean</span> <span class="n">isLeapYear</span> <span class="o">=</span> <span class="o">((</span><span class="n">year</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">year</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> 
+                    <span class="o">||</span> <span class="o">(</span><span class="n">year</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">==</span> <span class="mi">0</span><span class="o">));</span>
+
+            <span class="c1">// if current year is a leap year and dayOfYear comes after Feb. 29th</span>
+            <span class="c1">// add 1 to dayOfYear to offset extra day</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">isLeapYear</span> <span class="o">&amp;&amp;</span> <span class="n">dayOfYear</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="o">)</span>
+            <span class="o">{</span>
+                <span class="n">dayOfYear</span><span class="o">++;</span>
+            <span class="o">}</span>
+
+            <span class="n">calendar</span><span class="o">.</span><span class="na">setTime</span><span class="o">(</span><span class="k">new</span> <span class="nf">Date</span><span class="o">());</span>
+            <span class="n">calendar</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">year</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+            <span class="n">calendar</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">DAY_OF_YEAR</span><span class="o">,</span> <span class="n">dayOfYear</span><span class="o">);</span>
+
+            <span class="kt">int</span> <span class="n">month</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">MONTH</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">day</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">DAY_OF_MONTH</span><span class="o">);</span>
+
+            <span class="n">monthDay</span><span class="o">.</span><span class="na">setMonth</span><span class="o">(</span><span class="n">month</span><span class="o">);</span>
+            <span class="n">monthDay</span><span class="o">.</span><span class="na">setDay</span><span class="o">(</span><span class="n">day</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">monthDay</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MonthDay</span>
+<span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">month</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">day</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getMonth</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">month</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setMonth</span><span class="o">(</span><span class="n">Integer</span> <span class="n">month</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">month</span> <span class="o">=</span> <span class="n">month</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getDay</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">day</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDay</span><span class="o">(</span><span class="n">Integer</span> <span class="n">day</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">day</span> <span class="o">=</span> <span class="n">day</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></div>
 
 <p>   So, that’s how I handled leap years without the need of having the user specify a year. I’m sure there were plenty of other ways of going about the matter and perhaps one day the need to move away from this method will arise, but for now it serves our purposes well. Thank you for reading this post and I hope that, if you’ve stumbled upon this while searching for ways to handle leap years in smartGWT, you find this somewhat helpful.</p>
  ]]></content>
