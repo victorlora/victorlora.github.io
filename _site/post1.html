@@ -1,25 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  
-    <title type="text" xml:lang="en">Victor A. Lora</title>
-    <link type="application/atom+xml" rel="self" href="http://victorlora.github.io//atom.xml"/>
-  
-  <link href="http://victorlora.github.io//"/>
-  <id>http://victorlora.github.io//</id>
-  <updated>2016-08-08T23:38:26Z</updated>
-  <author>
-    <name>Victor A. Lora</name>
-    <email>victor@victorlora.net</email>
-  </author>
-  <rights type="text">Copyright © 2016 Victor A. Lora. All rights reserved.</rights>
-  
-  <entry>
-  <title type="text">Leap Years</title>
-  <link rel="alternate" type="text/html" href="http://victorlora.github.io//post1.html" />
-  <id>http://victorlora.github.io//post1</id>
-  <published>2016-08-04T00:00:00Z</published>
-  <updated>2016-08-04T00:00:00Z</updated>
-  <content type="html"><![CDATA[ <p>   At work the other day, I came across an interesting situation which, at first glance, seemed really simple, but actually ended up being quite involved. I was working on a portal module and needed a way for the user to schedule a yearly task. My company uses <a href="http://www.smartclient.com/smartgwt/showcase/">smartGWT</a>, a library that offers a range of tools that greatly facilitate portal development and form creation, so the smartGWT <a href="http://www.java2s.com/Code/Java/GWT/UsingDateItemtocreatedatepickerSmartGWT.htm">DateItem</a> was the first logical choice for date selection.</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Victor A. Lora" />
+    <meta name="description" content="Personal blog and resume">
+    <link rel="favicon" href="static/img/favicon.ico" />
+
+    
+      <title>Leap Years</title>
+    
+	
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+    crossorigin="anonymous" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="static/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="static/css/bootstrap.icon-large.min.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/syntax.css" />
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-72222962-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+  <!-- Main Body-->
+  <body>
+  <!-- Wrap all page content here -->
+  <div id="wrap">
+    <!-- Navbar header -->
+    <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html"><i class="fa fa-home"></i></a>
+    </div>
+    <div id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="projects.html">PROJECTS</a></li>
+        <li><a href="resume.pdf">RESUME</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="container">
+	<div class="blog-post">
+		<h3>
+		  <strong><a href="/post1.html">Leap Years</a></strong>
+		</h3>
+	</div>
+	<div class="blog-title">
+		<h4>
+		August  4, 2016
+			
+			
+		</h4>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="blogpost">
+			  <p>   At work the other day, I came across an interesting situation which, at first glance, seemed really simple, but actually ended up being quite involved. I was working on a portal module and needed a way for the user to schedule a yearly task. My company uses <a href="http://www.smartclient.com/smartgwt/showcase/">smartGWT</a>, a library that offers a range of tools that greatly facilitate portal development and form creation, so the smartGWT <a href="http://www.java2s.com/Code/Java/GWT/UsingDateItemtocreatedatepickerSmartGWT.htm">DateItem</a> was the first logical choice for date selection.</p>
 
 <p>   The default DateItem consists of three selectors (month, day, year); however, due to the fact that this was going to be an yearly task, including the year as one of the options would have been rather pointless, so I decided I was only going to allow month-day selection. But, after some digging around the DateItem class, I discovered there was no way to remove the year. Thankfully, smartGWT easily allows you to create custom form items, so I decided I would create a form item composed of two selectors (month, day) – that’s when things got interesting. Without the year, there was no way to determine whether the month of February should contain 28 or 29 days. Additionally, without the year, how would I store a date in the database? In order to answer these questions, I discussed the matter with one of my co-workers, and, after some discussion, we decided to look at how other companies handled the scheduling of yearly tasks on February 29th.</p>
 
@@ -229,9 +289,41 @@
 <span class="lineno">25</span> <span class="o">}</span></code></pre></div>
 
 <p>   So, that’s how I handled leap years without the need of having the user specify a year. I’m sure there were plenty of other ways of going about the matter and perhaps one day the need to move away from this method will arise, but for now it serves our purposes well. Thank you for reading this post and I hope that, if you’ve stumbled upon this while searching for ways to handle leap years in smartGWT, you find this somewhat helpful.</p>
- ]]></content>
-</entry>
+
+			   <hr>
+			   <div class="related-posts">
+				   <h5>Related Posts</h5>
+				   
+			   </div>
+			</div>
+		</div>
+	</div>
+	
+
+</div>
 
 
+  </div>
+  <!-- Footer -->
+  <footer>
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted">© 2016 All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+<div class="footer"></div>
 
-</feed>
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+    integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
+    crossorigin="anonymous"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="static/js/docs.min.js"></script>
+    <script src="static/js/main.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="static/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

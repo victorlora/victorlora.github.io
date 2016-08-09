@@ -109,6 +109,7 @@ h3 {
   font-weight: bold;
 }
 
+
 .container a:hover {
   color: #000000;
 }
@@ -158,11 +159,18 @@ h3 {
 .avatar {
   padding-top: 5%;
 }
-.blog-post{
+.blog-post {
   padding-top: 15px;
+  text-align: center;
+}
+.blog-post a {
+  color: #F1F1F1;
 }
 .blog-title{
   padding-top: 2px;
+}
+.blog-title h4 {
+  color: #F1F1F1;
 }
 .related-posts h4 {
   text-align: center;
@@ -174,7 +182,7 @@ h3 {
   padding-bottom: 15px;
 }
 
-.blogpost{
+.blogpost {
   text-align: left;
   line-height: 30px;
   font-size: 18px;

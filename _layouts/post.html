@@ -11,7 +11,7 @@ layout: layout
 	<div class="blog-title">
 		<h4>
 		{{ page.date | date: "%B %e, %Y" }}
-			&nbsp;&nbsp;
+			
 			{% for tag in page.tags %}
 			 <span class="label label-success">{{ tag }}</span>
 			{% endfor %}
@@ -27,7 +27,7 @@ layout: layout
 				   {% for post in site.related_posts limit:3 %}
 						<div class="row">
 							 <div class="col-sm-4 col-md-4 col-lg-4">
-								 <h6 style="text-align: right">
+								 <h6 style="text-align: center">
 								 	{{ post.date | date: "%B %e, %Y" }}
 								 </h6>
 							 </div>
