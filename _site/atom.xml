@@ -6,7 +6,7 @@
   
   <link href="http://victorlora.github.io//"/>
   <id>http://victorlora.github.io//</id>
-  <updated>2016-08-09T01:12:24Z</updated>
+  <updated>2016-08-09T02:55:03Z</updated>
   <author>
     <name>Victor A. Lora</name>
     <email>victor@victorlora.net</email>
@@ -17,8 +17,8 @@
   <title type="text">Leap Years</title>
   <link rel="alternate" type="text/html" href="http://victorlora.github.io//post1.html" />
   <id>http://victorlora.github.io//post1</id>
-  <published>2016-08-04T00:00:00Z</published>
-  <updated>2016-08-04T00:00:00Z</updated>
+  <published>2016-08-08T00:00:00Z</published>
+  <updated>2016-08-08T00:00:00Z</updated>
   <content type="html"><![CDATA[ <p>   At work the other day, I came across an interesting situation which, at first glance, seemed really simple, but actually ended up being quite involved. I was working on a portal module and needed a way for the user to schedule a yearly task. My company uses <a href="http://www.smartclient.com/smartgwt/showcase/">smartGWT</a>, a library that offers a range of tools that greatly facilitate portal development and form creation, so the smartGWT <a href="http://www.java2s.com/Code/Java/GWT/UsingDateItemtocreatedatepickerSmartGWT.htm">DateItem</a> was the first logical choice for date selection.</p>
 
 <p>   The default DateItem consists of three selectors (month, day, year); however, due to the fact that this was going to be an yearly task, including the year as one of the options would have been rather pointless, so I decided I was only going to allow month-day selection. But, after some digging around the DateItem class, I discovered there was no way to remove the year. Thankfully, smartGWT easily allows you to create custom form items, so I decided I would create a form item composed of two selectors (month, day) – that’s when things got interesting. Without the year, there was no way to determine whether the month of February should contain 28 or 29 days. Additionally, without the year, how would I store a date in the database? In order to answer these questions, I discussed the matter with one of my co-workers, and, after some discussion, we decided to look at how other companies handled the scheduling of yearly tasks on February 29th.</p>
