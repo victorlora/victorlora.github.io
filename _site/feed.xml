@@ -5,9 +5,47 @@
     <description>Personal blog and resume</description>
     <link>http://victorlora.github.io//</link>
     <atom:link href="http://victorlora.github.io//feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 09 Aug 2016 02:55:03 -0400</pubDate>
-    <lastBuildDate>Tue, 09 Aug 2016 02:55:03 -0400</lastBuildDate>
+    <pubDate>Fri, 12 Aug 2016 00:56:10 -0400</pubDate>
+    <lastBuildDate>Fri, 12 Aug 2016 00:56:10 -0400</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Reading List</title>
+        <description>&lt;p&gt;I decided to compile a list of texts that I have read and feel have helped advance my development skills. Regrettably, I have more books than I have time to read, so below I’ll list those books I’ve read and provide a brief description. I’ll do my best to update both the list and the descriptions as I go along.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=sr_1_1?ie=UTF8&amp;amp;qid=1470975728&amp;amp;sr=8-1&amp;amp;keywords=clean+code&quot;&gt;Clean Code: A Handbook of Agile Software Craftsmanship&lt;/a&gt;&lt;br /&gt;
+This book is a must read for anyone starting to write code (and even a seasoned veteran may take away a thing or two ). The author, Richard Martin, introduces you to many concepts that will greatly improve your code’s readability and does a fantastic job of keeping the reader engaged.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.amazon.com/Computer-Systems-Programmers-Perspective-2nd/dp/0136108040/ref=sr_1_3?s=books&amp;amp;ie=UTF8&amp;amp;qid=1470977271&amp;amp;sr=1-3&amp;amp;keywords=computer+systems&quot;&gt;Computer Systems: A Programmer’s Perspective (2nd Edition)&lt;/a&gt;&lt;br /&gt;
+I used this text for my computer organization course, and it provided a great introduction to the inner-workings of a computer system.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.amazon.com/Head-First-Java-2nd-Sierra/dp/0596009208/ref=sr_1_1?ie=UTF8&amp;amp;qid=1470975622&amp;amp;sr=8-1&amp;amp;keywords=head+first+into+java&quot;&gt;Head First Java&lt;/a&gt;&lt;br /&gt;
+Head First Java is a great introduction to Java. It does a phenomenal job of explaining the Java syntax, objects, inheritance, and object oriented design in general. I usually recommend this book to my tutees as it uses easy-to-understand analogies and examples.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.amazon.com/HTML-CSS-Design-Build-Websites/dp/1118008189/ref=sr_1_1?ie=UTF8&amp;amp;qid=1470975658&amp;amp;sr=8-1&amp;amp;keywords=html+and+css&quot;&gt;HTML and CSS: Design and Build Websites&lt;/a&gt;&lt;br /&gt;
+Indepth introduction to HTML and CSS.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.amazon.com/gp/product/0124116442/ref=oh_aui_search_detailpage?ie=UTF8&amp;amp;psc=1&quot;&gt;The Basics of Hacking and Penetration Testing, Second Edition: Ethical Hacking and Penetration Testing Made Easy&lt;/a&gt;&lt;br /&gt;
+This book offers a good introduction to the world of cybersecurity and ethical hacking as well as many of the processes and tools involved in the trade.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.amazon.com/Linux-Command-Line-Complete-Introduction/dp/1593273894/ref=sr_1_1?ie=UTF8&amp;amp;qid=1470975773&amp;amp;sr=8-1&amp;amp;keywords=the+linux+command+line&quot;&gt;The Linux Command Line: A Complete Introduction&lt;/a&gt;&lt;br /&gt;
+I had used linux for a long time before picking this book up; however, even for someone with some experience, this book had a lot to offer. It introduced me to various tools, tips and tricks that have greatly improved my understanding of Linux.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 11 Aug 2016 00:00:00 -0400</pubDate>
+        <link>http://victorlora.github.io//Reading_List.html</link>
+        <guid isPermaLink="true">http://victorlora.github.io//Reading_List.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>Leap Years</title>
@@ -15,7 +53,7 @@
 
 &lt;p&gt;   The default DateItem consists of three selectors (month, day, year); however, due to the fact that this was going to be an yearly task, including the year as one of the options would have been rather pointless, so I decided I was only going to allow month-day selection. But, after some digging around the DateItem class, I discovered there was no way to remove the year. Thankfully, smartGWT easily allows you to create custom form items, so I decided I would create a form item composed of two selectors (month, day) – that’s when things got interesting. Without the year, there was no way to determine whether the month of February should contain 28 or 29 days. Additionally, without the year, how would I store a date in the database? In order to answer these questions, I discussed the matter with one of my co-workers, and, after some discussion, we decided to look at how other companies handled the scheduling of yearly tasks on February 29th.&lt;/p&gt;
 
-&lt;p&gt;   First, we looked at how our iPhones handled the situation. We scheduled something for February 29th on a leap year (2016) and set it to repeat yearly. What we found is that Apple actually handles this rather poorly. The task you scheduled to repeat yearly actually gets ignored for non-leap years and only shows up on the next leap year (4 years later). My thought would be that if you, for whatever reason, decide to schedule a task on February 29th and want it to repeat yearly, then Apple should either change the “Repeat yearly” to “Repeat every four years”, or they should provide some sort of option to change the task to happen on either February 28th or March 1st on non-leap years. But alas, they don’t, and I’m sure there was a long discussion over it when they decided to handle it this way. Then, out of curiousity, I decided to see how people born on February 29th celebrated their birthdays and found that for the most part they simply either celebrate their birthdays on the 28th or the 1st. So, armed with this information, we decided that if Apple was ok with simply ignoring tasks scheduled on February 29th on non-leap years and people were okay with celebrating their birthdays a day before or after, then we were okay simply disallowing February 29th from being an option, and in regards to the issue of storing the date in the database, we decided that we would store the day of the year instead.&lt;/p&gt;
+&lt;p&gt;   First, we looked at how our iPhones handled the situation. We scheduled something for February 29th on a leap year (2016) and set it to repeat yearly. What we found is that Apple actually handles this rather poorly. The task you scheduled to repeat yearly actually gets ignored for non-leap years and only shows up on the next leap year (4 years later). My thought would be that if you, for whatever reason, decide to schedule a task on February 29th and want it to repeat yearly, then Apple should either change the “Repeat yearly” to “Repeat every four years”, or they should provide some sort of option to change the task to happen on either February 28th or March 1st on non-leap years. But alas, they don’t, and I’m sure there was a long discussion over it when they decided to handle it this way. Then, out of curiosity, I decided to see how people born on February 29th celebrated their birthdays and found that for the most part they simply either celebrate their birthdays on the 28th or the 1st. So, armed with this information, we decided that if Apple was ok with simply ignoring tasks scheduled on February 29th on non-leap years and people were okay with celebrating their birthdays a day before or after, then we were okay simply disallowing February 29th from being an option, and in regards to the issue of storing the date in the database, we decided that we would store the day of the year instead.&lt;/p&gt;
 
 &lt;p&gt;The resulting custom date item was as follows:&lt;/p&gt;
 
@@ -226,8 +264,8 @@
 &lt;p&gt;   So, that’s how I handled leap years without the need of having the user specify a year. I’m sure there were plenty of other ways of going about the matter and perhaps one day the need to move away from this method will arise, but for now it serves our purposes well. Thank you for reading this post and I hope that, if you’ve stumbled upon this while searching for ways to handle leap years in smartGWT, you find this somewhat helpful.&lt;/p&gt;
 </description>
         <pubDate>Mon, 08 Aug 2016 00:00:00 -0400</pubDate>
-        <link>http://victorlora.github.io//post1.html</link>
-        <guid isPermaLink="true">http://victorlora.github.io//post1.html</guid>
+        <link>http://victorlora.github.io//Leap_Years.html</link>
+        <guid isPermaLink="true">http://victorlora.github.io//Leap_Years.html</guid>
         
         <category>Leap Years</category>
         

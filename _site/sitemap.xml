@@ -1,141 +1,57 @@
+
+---
+layout: null
+---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://victorlora.github.io//</loc>
-    <lastmod>2016-08-09T02:55:03-04:00</lastmod>
+    <loc>{{ site.url }}/</loc>
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
-  
+  {% for post in site.posts %}
     <url>
-      <loc>http://victorlora.github.io//post1.html</loc>
-      
-        <lastmod>2016-08-08T00:00:00-04:00</lastmod>
-      
-      
+      <loc>{{ site.url }}{{ post.url }}</loc>
+      {% if post.sitemap.lastmod %}
+        <lastmod>{{ post.sitemap.lastmod | date: "%Y-%m-%d" }}</lastmod>
+      {% elsif post.date %}
+        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+      {% else %}
+        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+      {% endif %}
+      {% if post.sitemap.changefreq %}
+        <changefreq>{{ post.sitemap.changefreq }}</changefreq>
+      {% else %}
         <changefreq>monthly</changefreq>
-      
-      
+      {% endif %}
+      {% if post.sitemap.priority %}
+        <priority>{{ post.sitemap.priority }}</priority>
+      {% else %}
         <priority>0.5</priority>
-      
+      {% endif %}
     </url>
-  
-  
+  {% endfor %}
+  {% for page in site.pages %}
   <url>
-    <loc>http://victorlora.github.io//404.html</loc>
-    
-      <lastmod>2016-08-09T02:55:03-04:00</lastmod>
-    
-    
+    <loc>{{ site.url }}{{ page.url }}</loc>
+    {% if page.sitemap.lastmod %}
+      <lastmod>{{ page.sitemap.lastmod | date: "%Y-%m-%d" }}</lastmod>
+    {% elsif page.date %}
+      <lastmod>{{ page.date | date_to_xmlschema }}</lastmod>
+    {% else %}
+      <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+    {% endif %}
+    {% if page.sitemap.changefreq %}
+      <changefreq>{{ page.sitemap.changefreq }}</changefreq>
+    {% else %}
       <changefreq>monthly</changefreq>
-    
-    
+    {% endif %}
+    {% if page.sitemap.priority %}
+      <priority>{{ page.sitemap.priority }}</priority>
+    {% else %}
       <priority>0.3</priority>
-    
+    {% endif %}
   </url>
-  
-  <url>
-    <loc>http://victorlora.github.io//about/</loc>
-    
-      <lastmod>2016-08-09T02:55:03-04:00</lastmod>
-    
-    
-      <changefreq>monthly</changefreq>
-    
-    
-      <priority>0.3</priority>
-    
-  </url>
-  
-  <url>
-    <loc>http://victorlora.github.io//atom.xml</loc>
-    
-      <lastmod>2016-08-09T02:55:03-04:00</lastmod>
-    
-    
-      <changefreq>monthly</changefreq>
-    
-    
-      <priority>0.3</priority>
-    
-  </url>
-  
-  <url>
-    <loc>http://victorlora.github.io//blog.html</loc>
-    
-      <lastmod>2016-08-09T02:55:03-04:00</lastmod>
-    
-    
-      <changefreq>monthly</changefreq>
-    
-    
-      <priority>0.3</priority>
-    
-  </url>
-  
-  <url>
-    <loc>http://victorlora.github.io//feed.xml</loc>
-    
-      <lastmod>2016-08-09T02:55:03-04:00</lastmod>
-    
-    
-      <changefreq>monthly</changefreq>
-    
-    
-      <priority>0.3</priority>
-    
-  </url>
-  
-  <url>
-    <loc>http://victorlora.github.io//index.html</loc>
-    
-      <lastmod>2016-08-09T02:55:03-04:00</lastmod>
-    
-    
-      <changefreq>monthly</changefreq>
-    
-    
-      <priority>0.3</priority>
-    
-  </url>
-  
-  <url>
-    <loc>http://victorlora.github.io//css/main.css</loc>
-    
-      <lastmod>2016-08-09T02:55:03-04:00</lastmod>
-    
-    
-      <changefreq>monthly</changefreq>
-    
-    
-      <priority>0.3</priority>
-    
-  </url>
-  
-  <url>
-    <loc>http://victorlora.github.io//projects.html</loc>
-    
-      <lastmod>2016-08-09T02:55:03-04:00</lastmod>
-    
-    
-      <changefreq>monthly</changefreq>
-    
-    
-      <priority>0.3</priority>
-    
-  </url>
-  
-  <url>
-    <loc>http://victorlora.github.io//sitemap.xml</loc>
-    
-      <lastmod>2016-08-09T02:55:03-04:00</lastmod>
-    
-    
-      <changefreq>monthly</changefreq>
-    
-    
-      <priority>0.3</priority>
-    
-  </url>
-  
+  {% endfor %}
 </urlset>

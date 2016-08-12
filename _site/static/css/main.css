@@ -178,14 +178,20 @@ h3 {
 .page-not-found {
   padding-top: 20%;
 }
-.disqus {
-  padding-bottom: 15px;
-}
 
 .blogpost {
   text-align: left;
   line-height: 30px;
   font-size: 18px;
+}
+
+.resume {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  text-align: center;
+  color: #000000;
 }
 
 /* Footer 
@@ -194,15 +200,11 @@ h3 {
 .footer {
   text-decoration: none !important;
 }
+
 .text-muted {
   color: #F1F1F1;
 }
+
 div.footer{
   border-bottom: 5px solid #FFFFFF;;
 }
-/* Set the fixed height of the footer here */
-/*.footer {
-  height: 50px;
-  padding-bottom: 15px;
-  
-}*/
