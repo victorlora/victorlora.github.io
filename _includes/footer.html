@@ -1,7 +1,12 @@
 <footer>
     <div id="footer">
         <div class="container">
-            <p class="text-muted">© 2017 All rights reserved.</p>
+            <p class="text-muted">
+                © 
+                <span id="copyright">
+                    <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+                </span> 
+                All rights reserved.</p>
         </div>
     </div>
 </footer>
